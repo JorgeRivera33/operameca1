@@ -44,8 +44,8 @@
 		#tr{position: absolute;top: 60px; left:30px; font-weight: bold; text-shadow: 1px 1px  2px gray;}
 		.td{position: absolute;top: 80px; left:30px;}
 		.td1{position: absolute;top: 320px; left:30px;}
-		#operadores{position: absolute;top: 340px; left:30px; padding: 5px;}
-		#v1{position: absolute;top: 110px;left:170px;}
+		.operadores{position: absolute;top: 340px; left:30px; padding: 5px;}
+		.v1{position: absolute;top: 110px;left:170px;}
 		.btns{position: absolute;top:350px;left:650px;padding:5px; width:80px; font-weight: bold; background: green; text-align: center; color:white; text-shadow: 0px 0px 2px black; cursor: pointer;}
 		#vista2{display: none;}
 		#vista1{display: block;}
@@ -59,22 +59,24 @@
 		<div id="titg">QuieroConTic</div>
 		<div class="linea"></div>
 		<div id="menu" ></div>
-		<div id="vista1">
+
+		<div class="corazon" style="left: 584px; top: 30px;"></div>
+		<div class="corazon" style="left: 616px; top: 30px;"></div>
+		<div class="corazon" style="left: 646px; top: 30px;"></div>
+
+		<div id="vista1" style="display: block;">
 			<div id="tr">ACTIVIDAD:</div>
 			<p class="td">
 				Observar con atención el siguiente vídeo.
 			</p>
-			<video id="v1" src="video/hand.mp4" controls="true"></video>
+			<video class="v1" src="video/hand.mp4" controls="true"></video>
 			<div class="btns">Siguiente</div>
 		</div>
-		<div id="vista2">
+		<div id="vista2" style="display: none;">
 			<div id="tr">ACTIVIDAD:</div>
 			<p class="td">
-				Identifica el nombre de los operadores mecánicos que aparecen en la imagen.
+				Oprime sobre cada uno de los puntos naranja y luego selecciona el nombre en la parte inferior.
 			</p>
-			<div class="corazon" style="left: 584px; top: 30px;"></div>
-			<div class="corazon" style="left: 616px; top: 30px;"></div>
-			<div class="corazon" style="left: 646px; top: 30px;"></div>
 
 			<img src="img/c1.png" id="imagen">
 			<div class="punto" id="p1" style="left: 291px; top: 257px;" objr="Engranaje"></div>
@@ -83,7 +85,7 @@
 			<p class="td1">
 				¿Cómo se llama el operador mecánico que acabas de oprimir?
 			</p>
-			<select id="operadores">
+			<select class="operadores">
 				<option></option>
 				<option value="Rueda">Rueda</option>
 				<option value="Engranaje">Engranaje</option>
@@ -92,12 +94,55 @@
 				<option value="Cremallera">Cremallera</option>
 				<option value="Husillo">Husillo</option>
 				<option value="Excentrica">Excentrica</option>
+				<option value="Biela Manivela">Biela Manivela</option>
+				<option value="Émbolo o pistón">Émbolo o pistón</option>
+				<option value="Camisa del émbolo">Camisa del émbolo</option>
 			</select>
 			</div>
+			<div class="btns">Siguiente</div>
+		</div>
+		<div id="vista3" style="display: none;">
+			<div id="tr">ACTIVIDAD:</div>
+			<p class="td">
+				Observar con atención el siguiente vídeo.
+			</p>
+			<video class="v1" src="video/cig.mp4" controls="true"></video>
+			<div class="btns">Siguiente</div>
+		</div>
+		<div id="vista4" style="display: none;">
+			<div id="tr">ACTIVIDAD:</div>
+			<p class="td">
+				Oprime sobre cada uno de los puntos naranja y luego selecciona el nombre en la parte inferior.
+			</p>
+
+			<img src="img/c2.png" id="imagen">
+			<div class="punto" id="p1" style="left: 369px; top: 130px;" objr="Cigueñal"></div>
+			<div class="punto" id="p2" style="left: 433px; top: 187px;" objr="Biela Manivela"></div>
+			<div class="punto" id="p3" style="left: 378px; top: 155px;" objr="Émbolo o pistón"></div>
+			<div class="punto" id="p4" style="left: 291px; top: 162px;" objr="Camisa del émbolo"></div>
+			<div class="pregunta" style="display: none;">
+			<p class="td1">
+				¿Cómo se llama el operador mecánico que acabas de oprimir?
+			</p>
+			<select class="operadores">
+				<option></option>
+				<option value="Rueda">Rueda</option>
+				<option value="Engranaje">Engranaje</option>
+				<option value="Cigueñal">Cigueñal</option>
+				<option value="Leva">Leva</option>
+				<option value="Cremallera">Cremallera</option>
+				<option value="Husillo">Husillo</option>
+				<option value="Excentrica">Excentrica</option>
+				<option value="Biela Manivela">Biela Manivela</option>
+				<option value="Émbolo o pistón">Émbolo o pistón</option>
+				<option value="Camisa del émbolo">Camisa del émbolo</option>
+			</select>
+			</div>
+			<div class="btns">Siguiente</div>
 		</div>
 	</div>
 	<script type="text/javascript">
-		//$(".corazon").draggable();
+		$(".punto").draggable();
 	</script>
 	<script type="text/javascript">
 		var vista=1;
@@ -108,8 +153,12 @@
 		$(function(){
 			console.log("cargado");
 			$(".btns").click(function(){
-				console.log(vista);
 				$("#vista"+vista).css("display","none");
+				if(vista % 2 ===0){
+					$(".btns").css("display","block");
+				}else{
+					$(".btns").css("display","none");
+				}
 				vista++;
 				$("#vista"+vista).css("display","block");
 			});
@@ -123,12 +172,13 @@
 				console.log(obj_active);
 			});
 
-			$("#operadores").on('change',function(){
+			$(".operadores").on('change',function(){
 				var valor=$(this).val();
 				if(valor===obj_active){
 					console.log("bien");
 					$(punto).css("background","green");
 					bien++;
+					$(".operadores").val("");
 					$( punto ).prop( "disabled", true );
 					evaluarVista();
 				}else{
@@ -151,7 +201,20 @@
 			switch(vista){
 				case 2:
 					if(bien===2){
-						console.log("Listo");
+						var a=document.querySelector("#vista"+vista);
+						var b=a.querySelector(".btns");
+						$(b).css("display","block");
+						obj_active="";
+						punto="";
+						bien=0;
+					}
+				break;
+				case 4:
+					if(bien===4){
+						var a=document.querySelector("#vista"+vista);
+						var b=a.querySelector(".btns");
+						$(b).css("display","block");
+						console.log("listo");
 					}
 				break;
 			}
