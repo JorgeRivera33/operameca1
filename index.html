@@ -46,7 +46,7 @@
 		.td1{position: absolute;top: 320px; left:30px;}
 		#operadores{position: absolute;top: 340px; left:30px; padding: 5px;}
 		#v1{position: absolute;top: 110px;left:170px;}
-		#btns{position: absolute;top:350px;left:650px;padding:5px; width:80px; font-weight: bold; background: green; text-align: center; color:white; text-shadow: 0px 0px 2px black; cursor: pointer;}
+		.btns{position: absolute;top:350px;left:650px;padding:5px; width:80px; font-weight: bold; background: green; text-align: center; color:white; text-shadow: 0px 0px 2px black; cursor: pointer;}
 		#vista2{display: none;}
 		#vista1{display: block;}
 		#imagen{position: absolute;top: 110px;left:170px; width:350px;}
@@ -65,7 +65,7 @@
 				Observar con atención el siguiente vídeo.
 			</p>
 			<video id="v1" src="video/hand.mp4" controls="true"></video>
-			<div id="btns">Siguiente</div>
+			<div class="btns">Siguiente</div>
 		</div>
 		<div id="vista2">
 			<div id="tr">ACTIVIDAD:</div>
@@ -95,17 +95,9 @@
 			</select>
 			</div>
 		</div>
-		<div id="vista3">
-			<div id="tr">ACTIVIDAD:</div>
-			<p class="td">
-				Observar con atención el siguiente vídeo.
-			</p>
-			<video id="v1" src="video/hand.mp4" controls="true"></video>
-			<div id="btns">Siguiente</div>
-		</div>
 	</div>
 	<script type="text/javascript">
-		$(".corazon").draggable();
+		//$(".corazon").draggable();
 	</script>
 	<script type="text/javascript">
 		var vista=1;
@@ -114,8 +106,9 @@
 		var bien=0;
 
 		$(function(){
-
-			$("#btns").click(function(){
+			console.log("cargado");
+			$(".btns").click(function(){
+				console.log(vista);
 				$("#vista"+vista).css("display","none");
 				vista++;
 				$("#vista"+vista).css("display","block");
