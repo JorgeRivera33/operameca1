@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<!--Moviles-->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3">
+	<!--Jquery-->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<!--Style-->
+	<style type="text/css">
+		*{margin:0; padding:0; box-sizing:border-box; user-select: none;}
+		#lienzo{border:1px solid black;width: 731px; height: 411px; position: absolute; top:0; left: 0;
+			background-color: #e8a31c;
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%23eac56c' fill-opacity='0.36' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
+		#titg{
+			font-family: 'Pacifico', cursive;
+			position: absolute;
+			top: 5px;
+			left: 15px;
+			font-size: 22px;
+			color:white;
+			z-index: 2
+		}
+		.linea{
+			width: 701px;
+			left: 15px;
+			height: 3px;
+			background:black;
+			position: absolute;
+			top:42px;
+		}
+		#menu{
+			width: 35px;
+			height: 35px;
+			background-image: url('img/menu.png');
+			background-size: 100% 100%;
+			position: absolute;
+			right: 15px;
+			top: 5px;
+			cursor:pointer;
+		}
+		#tr{position: absolute;top: 60px; left:30px; font-weight: bold; text-shadow: 1px 1px  2px gray;}
+		.td{position: absolute;top: 80px; left:30px;}
+		.td1{position: absolute;top: 320px; left:30px;}
+		#operadores{position: absolute;top: 340px; left:30px; padding: 5px;}
+		#v1{position: absolute;top: 110px;left:170px;}
+		#btns{position: absolute;top:350px;left:650px;padding:5px; width:80px; font-weight: bold; background: green; text-align: center; color:white; text-shadow: 0px 0px 2px black; cursor: pointer;}
+		#vista2{display: none;}
+		#vista1{display: block;}
+		#imagen{position: absolute;top: 110px;left:170px; width:350px;}
+		.punto{border:2px solid black;width:20px;height:20px;background:orange;border-radius:50%; cursor: pointer;position: absolute;}
+		.corazon{position: absolute;width: 30px; height: 30px; background: url('img/corazon.png'); background-size: 100% 100%;}
+	</style>
+</head>
+<body>
+	<div id="lienzo">
+		<div id="titg">QuieroConTic</div>
+		<div class="linea"></div>
+		<div id="menu" ></div>
+		<div id="vista1">
+			<div id="tr">ACTIVIDAD:</div>
+			<p class="td">
+				Observar con atención el siguiente vídeo.
+			</p>
+			<video id="v1" src="video/hand.mp4" controls="true"></video>
+			<div id="btns">Siguiente</div>
+		</div>
+		<div id="vista2">
+			<div id="tr">ACTIVIDAD:</div>
+			<p class="td">
+				Identifica el nombre de los operadores mecánicos que aparecen en la imagen.
+			</p>
+			<div class="corazon" style="left: 606px; top: 61px;"></div>
+			<div class="corazon" style="left: 636px; top: 61px;"></div>
+			<div class="corazon" style="left: 666px; top: 61px;"></div>
+
+			<img src="img/c1.png" id="imagen">
+			<div class="punto" id="p1" style="left: 291px; top: 257px;" objr="Engranaje"></div>
+			<div class="punto" id="p2" style="left: 344px; top: 261px;" objr="Cremallera"></div>
+			<div class="pregunta" style="display: none;">
+			<p class="td1">
+				¿Cómo se llama el operador mecánico que acabas de oprimir?
+			</p>
+			<select id="operadores">
+				<option></option>
+				<option value="Rueda">Rueda</option>
+				<option value="Engranaje">Engranaje</option>
+				<option value="Cigueñal">Cigueñal</option>
+				<option value="Leva">Leva</option>
+				<option value="Cremallera">Cremallera</option>
+				<option value="Husillo">Husillo</option>
+				<option value="Excentrica">Excentrica</option>
+			</select>
+			</div>
+		</div>
+		<div id="vista3">
+			<div id="tr">ACTIVIDAD:</div>
+			<p class="td">
+				Observar con atención el siguiente vídeo.
+			</p>
+			<video id="v1" src="video/hand.mp4" controls="true"></video>
+			<div id="btns">Siguiente</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(".corazon").draggable();
+	</script>
+	<script type="text/javascript">
+		var vista=1;
+		var obj_active="";
+		var punto="";
+		var bien=0;
+
+		$(function(){
+
+			$("#btns").click(function(){
+				$("#vista"+vista).css("display","none");
+				vista++;
+				$("#vista"+vista).css("display","block");
+			});
+
+			$(".punto").click(function(){
+				$(this).css("background","blue");
+				$(".pregunta").css("display","block");
+				$("#operadores").val("");
+				obj_active=$(this).attr("objr");
+				punto=$(this);
+				console.log(obj_active);
+			});
+
+			$("#operadores").on('change',function(){
+				var valor=$(this).val();
+				if(valor===obj_active){
+					console.log("bien");
+					$(punto).css("background","green");
+					bien++;
+					$( punto ).prop( "disabled", true );
+					evaluarVista();
+				}else{
+					console.log("mal");
+					$(punto).css("background","red");
+					var vida=$(".corazon");
+					console.log(vida);
+					if(vida.length<=1){
+						console.log("perdio");
+						$(vida[0]).remove();
+						window.location.reload();
+					}else{
+						$(vida[0]).remove();
+					}
+				}
+			});
+		});
+
+		function evaluarVista(){
+			switch(vista){
+				case 2:
+					if(bien===2){
+						console.log("Listo");
+					}
+				break;
+			}
+		}
+	</script>
+</body>
+</html>
+
