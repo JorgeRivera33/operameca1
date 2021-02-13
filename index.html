@@ -80,7 +80,7 @@
 		.tr{position: absolute;top: 60px; left:30px; font-weight: bold; text-shadow: 1px 1px  2px gray;}
 		.td{position: absolute;top: 80px; left:30px;}
 		.v1{position: absolute;top: 110px;left:152.5px;display: none;}
-		.btns,.btns2{position: absolute;top:370px;left:325.5px;padding:5px; width:80px; font-weight: bold; background: green; text-align: center; color:white; text-shadow: 0px 0px 2px black; cursor: pointer; border-radius: 5px;}
+		.btns,.btns2{position: absolute;top:370px;left:325.5px;padding:5px; width:90px; font-weight: bold; background: green; text-align: center; color:white; text-shadow: 0px 0px 2px black; cursor: pointer; border-radius: 5px;}
 
 		/**/
 		.imagen{position: absolute;top: 110px;left:170px; width:350px;display: none;}
@@ -419,15 +419,6 @@
 
 		function activarMenu(){
 			$(".menu").click(function(){
-				console.log("Menu");
-				var elem = document.querySelector("#lienzo");
-				if(fulls){
-					closeFullscreen(elem);
-					fulls=false;
-				}else{
-					openFullscreen(elem);
-					fulls=true;
-				}
 			});
 		}
 
@@ -491,32 +482,6 @@
 
 		function ocultarImagenes(){
 			$(".imagen").css("display","none");
-		}
-	</script>
-	<script type="text/javascript">
-		/* Get the documentElement (<html>) to display the page in fullscreen */
-		//var elem = document.documentElement;
-
-		/* View in fullscreen */
-		function openFullscreen(elem) {
-		  if (elem.requestFullscreen) {
-		    elem.requestFullscreen();
-		  } else if (elem.webkitRequestFullscreen) { /* Safari */
-		    elem.webkitRequestFullscreen();
-		  } else if (elem.msRequestFullscreen) { /* IE11 */
-		    elem.msRequestFullscreen();
-		  }
-		}
-
-		/* Close fullscreen */
-		function closeFullscreen(elem) {
-		  if (document.exitFullscreen) {
-		    document.exitFullscreen();
-		  } else if (document.webkitExitFullscreen) { /* Safari */
-		    document.webkitExitFullscreen();
-		  } else if (document.msExitFullscreen) { /* IE11 */
-		    document.msExitFullscreen();
-		  }
 		}
 	</script>
 </body>
