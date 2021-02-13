@@ -2,19 +2,53 @@
 <html lang="es">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>Operamecan</title>
 	<!--Moviles-->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=3">
+
+	<link href="https://fonts.googleapis.com/css?family=Pacifico" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Love+Ya+Like+A+Sister" rel="stylesheet">
 	<!--Jquery-->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+	<!--Prefix-->
+	<script type="text/javascript" src="js/prefixfree.min.js"></script>
 	<!--Style-->
 	<style type="text/css">
 		*{margin:0; padding:0; box-sizing:border-box; user-select: none;}
-		#lienzo{border:1px solid black;width: 731px; height: 411px; position: absolute; top:0; left: 0;
+		#portada,#zonavideo,#zonapuntos,#final{
+			border:1px solid black;
+			width: 731px; height: 411px;
+			position: relative;
 			background-color: #e8a31c;
-			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%23eac56c' fill-opacity='0.36' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
-		#titg{
+			background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg id='hexagons' fill='%23eac56c' fill-opacity='0.36' fill-rule='nonzero'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+			display: none;
+		}
+		#autor {
+		    margin-top: 120px;
+		    font-family: Pacifico;
+		    font-size: 50px;
+		    width: 731px;
+		    text-align: center;
+		}
+		#eslogan {
+		    font-family: 'Love Ya Like A Sister', cursive;
+		    color: white;
+		    font-size: 20px;
+		    width: 731px;
+		    text-align: center;
+		}
+		#btn_inicio {
+		    width: 50px;
+		    height: 50px;
+		    background: url(img/botonp.png);
+		    background-size: 100% 100%;
+		    margin: 0 auto;
+		    margin-top: 20px;
+		    cursor: pointer;
+		}
+		/*zonavideo*/
+		.titg{
 			font-family: 'Pacifico', cursive;
 			position: absolute;
 			top: 5px;
@@ -31,7 +65,7 @@
 			position: absolute;
 			top:42px;
 		}
-		#menu{
+		.menu{
 			width: 35px;
 			height: 35px;
 			background-image: url('img/menu.png');
@@ -41,185 +75,396 @@
 			top: 5px;
 			cursor:pointer;
 		}
-		#tr{position: absolute;top: 60px; left:30px; font-weight: bold; text-shadow: 1px 1px  2px gray;}
+		.tr{position: absolute;top: 60px; left:30px; font-weight: bold; text-shadow: 1px 1px  2px gray;}
 		.td{position: absolute;top: 80px; left:30px;}
-		.td1{position: absolute;top: 320px; left:30px;}
+		.v1{position: absolute;top: 110px;left:152.5px;display: none;}
+		.btns,.btns2{position: absolute;top:370px;left:325.5px;padding:5px; width:80px; font-weight: bold; background: green; text-align: center; color:white; text-shadow: 0px 0px 2px black; cursor: pointer; border-radius: 5px;}
+
+		/**/
+		.imagen{position: absolute;top: 110px;left:170px; width:350px;display: none;}
+		.punto,.puntob{border:2px solid black;width:20px;height:20px;background:orange;border-radius:50%; cursor: pointer;position: absolute;}
+		.puntob{background:green;}
 		.operadores{position: absolute;top: 340px; left:30px; padding: 5px;}
-		.v1{position: absolute;top: 110px;left:170px;}
-		.btns{position: absolute;top:350px;left:650px;padding:5px; width:80px; font-weight: bold; background: green; text-align: center; color:white; text-shadow: 0px 0px 2px black; cursor: pointer;}
-		#vista2{display: none;}
-		#vista1{display: block;}
-		#imagen{position: absolute;top: 110px;left:170px; width:350px;}
-		.punto{border:2px solid black;width:20px;height:20px;background:orange;border-radius:50%; cursor: pointer;position: absolute;}
-		.corazon{position: absolute;width: 30px; height: 30px; background: url('img/corazon.png'); background-size: 100% 100%;}
+		.td1{position: absolute;top: 320px; left:30px;}
+		.pregunta{display: none;}
+		#vidrio{width: 731px; height:411px; position: absolute; top: 0; left:0; background:black; opacity: 0.9; z-index: 10;}
+		.txtvidrio{z-index: 11; color: white; position: absolute; font-weight: bold; left:250px; top: 100px;}
+		#clave{position: absolute; top: 120px; left:268px; padding: 5px; z-index: 11; text-align: center; font-weight: bold;}
+		#gclave{display: none;}
+		#imgf{width: 200px; position: absolute; left:250px; top: 80px;}
+		#txtf{position: absolute; left:150px; top:320px;color: white; font-weight: bold; font-size: 25px; font-family: 'Love Ya Like A Sister', cursive; text-shadow: 0px 0px 5px black;}
 	</style>
 </head>
 <body>
 	<div id="lienzo">
-		<div id="titg">QuieroConTic</div>
-		<div class="linea"></div>
-		<div id="menu" ></div>
+		<div id="portada">
+			<p id="autor">QuieroConTIC</p>
+			<p id="eslogan">"Aprendizaje de los operadores mecánicos"</p>
+			<div id="btn_inicio"></div>
+		</div>
 
-		<div class="corazon" style="left: 584px; top: 30px;"></div>
-		<div class="corazon" style="left: 616px; top: 30px;"></div>
-		<div class="corazon" style="left: 646px; top: 30px;"></div>
-
-		<div id="vista1" style="display: block;">
-			<div id="tr">ACTIVIDAD:</div>
+		<div id="zonavideo">
+			<div class="titg">QuieroConTic</div>
+			<div class="linea"></div>
+			<div class="menu" ></div>
+			<div class="tr">ACTIVIDAD:</div>
 			<p class="td">
 				Observar con atención el siguiente vídeo.
 			</p>
-			<video class="v1" src="video/hand.mp4" controls="true"></video>
+			<div id="gvideo">
+				<video class="v1" src="video/hand.mp4" controls="true" preload="auto"></video>
+				<video class="v1" src="video/cig.mp4" controls="true" preload="auto"></video>
+				<video class="v1" src="video/01.mp4" controls="true" preload="auto"></video>
+				<video class="v1" src="video/02.mp4" controls="true" preload="auto"></video>
+				<video class="v1" src="video/03.mp4" controls="true" preload="auto"></video>
+				<video class="v1" src="video/04.mp4" controls="true" preload="auto"></video>
+				<video class="v1" src="video/05.mp4" controls="true" preload="auto"></video>
+				<video class="v1" src="video/06.mp4" controls="true" preload="auto"></video>
+				<video class="v1" src="video/07.mp4" controls="true" preload="auto"></video>
+				<video class="v1" src="video/08.mp4" controls="true" preload="auto"></video>
+			</div>
 			<div class="btns">Siguiente</div>
 		</div>
-		<div id="vista2" style="display: none;">
-			<div id="tr">ACTIVIDAD:</div>
+
+		<div id="zonapuntos">
+			<div class="titg">QuieroConTic</div>
+			<div class="linea"></div>
+			<div class="menu" ></div>
+			<div class="tr">ACTIVIDAD:</div>
 			<p class="td">
 				Oprime sobre cada uno de los puntos naranja y luego selecciona el nombre en la parte inferior.
 			</p>
-
-			<img src="img/c1.png" id="imagen">
+			<div id="gimg">
+				<img src="img/c1.png" class="imagen" loading="lazy">
+				<img src="img/c2.png" class="imagen" loading="lazy">
+				<img src="img/01.png" class="imagen" loading="lazy">
+				<img src="img/02.png" class="imagen" loading="lazy">
+				<img src="img/03.png" class="imagen" loading="lazy">
+				<img src="img/04.png" class="imagen" loading="lazy">
+				<img src="img/05.png" class="imagen" loading="lazy">
+				<img src="img/06.png" class="imagen" loading="lazy">
+				<img src="img/07.png" class="imagen" loading="lazy">
+				<img src="img/08.png" class="imagen" loading="lazy">
+			</div>
+			<!--
 			<div class="punto" id="p1" style="left: 291px; top: 257px;" objr="Engranaje"></div>
 			<div class="punto" id="p2" style="left: 344px; top: 261px;" objr="Cremallera"></div>
-			<div class="pregunta" style="display: none;">
-			<p class="td1">
+			-->
+			<div class="pregunta">
+				<p class="td1">
 				¿Cómo se llama el operador mecánico que acabas de oprimir?
-			</p>
-			<select class="operadores">
-				<option></option>
-				<option value="Rueda">Rueda</option>
-				<option value="Engranaje">Engranaje</option>
-				<option value="Cigueñal">Cigueñal</option>
-				<option value="Leva">Leva</option>
-				<option value="Cremallera">Cremallera</option>
-				<option value="Husillo">Husillo</option>
-				<option value="Excentrica">Excentrica</option>
-				<option value="Biela Manivela">Biela Manivela</option>
-				<option value="Émbolo o pistón">Émbolo o pistón</option>
-				<option value="Camisa del émbolo">Camisa del émbolo</option>
-			</select>
+				</p>
+				<select class="operadores">
+					<option></option>
+					<option value="Eje">Eje</option>
+					<option value="Rueda">Rueda</option>
+					<option value="Engranaje">Engranaje</option>
+					<option value="Cigueñal">Cigueñal</option>
+					<option value="Leva">Leva</option>
+					<option value="Sin fin">Sin fin</option>
+					<option value="Cremallera">Cremallera</option>
+					<option value="Husillo">Husillo</option>
+					<option value="Excentrica">Excentrica</option>
+					<option value="Biela Manivela">Biela Manivela</option>
+					<option value="Émbolo o pistón">Émbolo o pistón</option>
+					<option value="Camisa del émbolo">Camisa del émbolo</option>
+				</select>
 			</div>
-			<div class="btns">Siguiente</div>
+			<div class="btns2">Vídeo</div>
+			<div id="gclave">
+				<div id="vidrio"></div>
+				<div class="txtvidrio">Solicite el código para continuar</div>
+				<input type="Number" id="clave">
+			</div>
 		</div>
-		<div id="vista3" style="display: none;">
-			<div id="tr">ACTIVIDAD:</div>
-			<p class="td">
-				Observar con atención el siguiente vídeo.
-			</p>
-			<video class="v1" src="video/cig.mp4" controls="true"></video>
-			<div class="btns">Siguiente</div>
-		</div>
-		<div id="vista4" style="display: none;">
-			<div id="tr">ACTIVIDAD:</div>
-			<p class="td">
-				Oprime sobre cada uno de los puntos naranja y luego selecciona el nombre en la parte inferior.
-			</p>
 
-			<img src="img/c2.png" id="imagen">
-			<div class="punto" id="p1" style="left: 369px; top: 130px;" objr="Cigueñal"></div>
-			<div class="punto" id="p2" style="left: 433px; top: 187px;" objr="Biela Manivela"></div>
-			<div class="punto" id="p3" style="left: 378px; top: 155px;" objr="Émbolo o pistón"></div>
-			<div class="punto" id="p4" style="left: 291px; top: 162px;" objr="Camisa del émbolo"></div>
-			<div class="pregunta" style="display: none;">
-			<p class="td1">
-				¿Cómo se llama el operador mecánico que acabas de oprimir?
-			</p>
-			<select class="operadores">
-				<option></option>
-				<option value="Rueda">Rueda</option>
-				<option value="Engranaje">Engranaje</option>
-				<option value="Cigueñal">Cigueñal</option>
-				<option value="Leva">Leva</option>
-				<option value="Cremallera">Cremallera</option>
-				<option value="Husillo">Husillo</option>
-				<option value="Excentrica">Excentrica</option>
-				<option value="Biela Manivela">Biela Manivela</option>
-				<option value="Émbolo o pistón">Émbolo o pistón</option>
-				<option value="Camisa del émbolo">Camisa del émbolo</option>
-			</select>
-			</div>
-			<div class="btns">Siguiente</div>
+		<div id="final">
+			<div class="titg">QuieroConTic</div>
+			<div class="linea"></div>
+			<div class="menu" ></div>
+			<img src="img/bien.png" id="imgf">
+			<div id="txtf">¡Actividad terminada felicitaciones!</div>
 		</div>
 	</div>
 	<script type="text/javascript">
-		$(".punto").draggable();
+		var plan=[
+		{
+			'video':'video/hand.mp4',
+			'imagen':'img/c1.png',
+			'puntos':[
+						{'id':'p1','left':'291px','top':'257px','objr':'Engranaje'},
+						{'id':'p2','left':'344px','top':'261px','objr':'Cremallera'}
+					 ],
+			'clave':'4535'
+		}
+		,
+		{
+			'video':'video/cig.mp4',
+			'imagen':'img/c2.png',
+			'puntos':[
+						{'id':'p1','left':'369px','top':'130px','objr':'Cigueñal'},
+						{'id':'p2','left':'433px','top':'187px','objr':'Biela Manivela'},
+						{'id':'p3','left':'378px','top':'155px','objr':'Émbolo o pistón'},
+						{'id':'p4','left':'291px','top':'162px','objr':'Camisa del émbolo'}
+					 ],
+			'clave':'2468'
+		},
+		{
+			'video':'video/01.mp4',
+			'imagen':'img/01.png',
+			'puntos':[
+						{'id':'p1','left':'219px','top':'139px','objr':'Cremallera'},
+						{'id':'p2','left':'436px','top':'205px','objr':'Cremallera'},
+						{'id':'p3','left':'356px','top':'174px','objr':'Engranaje'}
+					 ],
+			'clave':'0010'
+		},
+		{
+			'video':'video/02.mp4',
+			'imagen':'img/02.png',
+			'puntos':[
+						{'id':'p1','left':'342px','top':'196px','objr':'Émbolo o pistón'},
+						{'id':'p2','left':'455px','top':'179px','objr':'Cigueñal'},
+						{'id':'p3','left':'383px','top':'130px','objr':'Rueda'},
+						{'id':'p4','left':'197px','top':'186px','objr':'Camisa del émbolo'}
+					 ],
+			'clave':'1010'
+		},
+		{
+			'video':'video/03.mp4',
+			'imagen':'img/03.png',
+			'puntos':[
+						{'id':'p1','left':'362px','top':'160px','objr':'Engranaje'},
+						{'id':'p2','left':'398px','top':'200px','objr':'Eje'},
+						{'id':'p3','left':'364px','top':'243px','objr':'Engranaje'},
+						{'id':'p4','left':'299px','top':'226px','objr':'Leva'}
+					 ],
+			'clave':'2045'
+		},
+		{
+			'video':'video/04.mp4',
+			'imagen':'img/04.png',
+			'puntos':[
+						{'id':'p1','left':'380px','top':'164px','objr':'Excentrica'},
+						{'id':'p2','left':'350px','top':'193px','objr':'Leva'},
+						{'id':'p3','left':'373px','top':'225px','objr':'Eje'},
+						{'id':'p4','left':'403px','top':'260px','objr':'Engranaje'}
+					 ],
+			'clave':'2012'
+		},
+		{
+			'video':'video/05.mp4',
+			'imagen':'img/05.png',
+			'puntos':[
+						{'id':'p1','left':'197px','top':'206px','objr':'Excentrica'},
+						{'id':'p2','left':'368px','top':'190px','objr':'Engranaje'},
+						{'id':'p3','left':'442px','top':'161px','objr':'Cremallera'}
+					 ],
+			'clave':'5021'
+		},
+		{
+			'video':'video/06.mp4',
+			'imagen':'img/06.png',
+			'puntos':[
+						{'id':'p1','left':'273px','top':'200px','objr':'Eje'},
+						{'id':'p2','left':'390px','top':'189px','objr':'Sin fin'},
+						{'id':'p3','left':'361px','top':'241px','objr':'Engranaje'},
+						{'id':'p4','left':'424px','top':'265px','objr':'Biela Manivela'}
+					 ],
+			'clave':'8001'
+		},
+		{
+			'video':'video/07.mp4',
+			'imagen':'img/07.png',
+			'puntos':[
+						{'id':'p1','left':'340px','top':'203px','objr':'Leva'}
+					 ],
+			'clave':'3090'
+		},
+		{
+			'video':'video/08.mp4',
+			'imagen':'img/08.png',
+			'puntos':[
+						{'id':'p1','left':'396px','top':'238px','objr':'Excentrica'},
+						{'id':'p2','left':'443px','top':'161px','objr':'Engranaje'},
+						{'id':'p3','left':'302px','top':'271px','objr':'Engranaje'},
+						{'id':'p4','left':'193px','top':'242px','objr':'Sin fin'}
+					 ],
+			'clave':'1254'
+		}
+		];
 	</script>
 	<script type="text/javascript">
-		var vista=1;
-		var obj_active="";
+		var indice=0;
+		var operador="";
 		var punto="";
-		var bien=0;
+		var aciertos=0;
+		var clave=true;
 
 		$(function(){
-			console.log("cargado");
-			$(".btns").click(function(){
-				$("#vista"+vista).css("display","none");
-				if(vista % 2 ===0){
-					$(".btns").css("display","block");
-				}else{
-					$(".btns").css("display","none");
-				}
-				vista++;
-				$("#vista"+vista).css("display","block");
-			});
-
-			$(".punto").click(function(){
-				$(this).css("background","blue");
-				$(".pregunta").css("display","block");
-				$("#operadores").val("");
-				obj_active=$(this).attr("objr");
-				punto=$(this);
-				console.log(obj_active);
-			});
-
-			$(".operadores").on('change',function(){
-				var valor=$(this).val();
-				if(valor===obj_active){
-					console.log("bien");
-					$(punto).css("background","green");
-					bien++;
-					$(".operadores").val("");
-					$( punto ).prop( "disabled", true );
-					evaluarVista();
-				}else{
-					console.log("mal");
-					$(punto).css("background","red");
-					var vida=$(".corazon");
-					console.log(vida);
-					if(vida.length<=1){
-						console.log("perdio");
-						$(vida[0]).remove();
-						window.location.reload();
-					}else{
-						$(vida[0]).remove();
-					}
-				}
-			});
+			mostrarEjercicio();
+			activarSelect();
+			activarInput();
+			activarBoton();
+			activarSiguiente();
+			$("#portada").css("display","block");
+			$(".punto").draggable();
 		});
 
-		function evaluarVista(){
-			switch(vista){
-				case 2:
-					if(bien===2){
-						var a=document.querySelector("#vista"+vista);
-						var b=a.querySelector(".btns");
-						$(b).css("display","block");
-						obj_active="";
-						punto="";
-						bien=0;
-					}
-				break;
-				case 4:
-					if(bien===4){
-						var a=document.querySelector("#vista"+vista);
-						var b=a.querySelector(".btns");
-						$(b).css("display","block");
-						console.log("listo");
-					}
-				break;
+		function mostrarEjercicio(){
+			var a=plan[indice];
+			var video=a.video;
+			var imagen=a.imagen;
+			var puntos=a.puntos;
+			mostrarVideo(video);
+			mostrarImagen(imagen);
+			crearPuntos(puntos);
+		}
+
+		function mostrarVideo(url){
+			var a=$(".v1");
+			for(var i=0;i<a.length;i++){
+				var b=$(a[i]).attr("src");
+				if(b===url){
+					$(a[i]).css("display","block");
+					break;
+				}
 			}
 		}
+
+		function mostrarImagen(url){
+			var a=$(".imagen");
+			for(var i=0;i<a.length;i++){
+				var b=$(a[i]).attr("src");
+				if(b===url){
+					$(a[i]).css("display","block");
+					break;
+				}
+			}
+		}
+
+		function crearPuntos(array){
+			console.log(array);
+			for(var i=0;i<array.length;i++){
+				var obj=array[i];
+				var id=obj.id;
+				var left=obj.left;
+				var top=obj.top;
+				var objr=obj.objr;
+				var p='<div class="punto" id="'+id+'" style="left: '+left+'; top: '+top+';" objr="'+objr+'"></div>';
+				$("#zonapuntos").append(p);
+				agregarEventoClick(id);
+			}
+		}
+
+		function agregarEventoClick(idpunto){
+			$("#"+idpunto).click(function(){
+				bajarOpacidadPuntos();
+				cambiarColorPuntos();
+				$(this).css("opacity","1");
+				$(this).css("background","blue");
+				operador=$(this).attr("objr");
+				$(".pregunta").css("display","block"); 
+				punto=$(this);	
+			});
+		}
+
+		function bajarOpacidadPuntos(){
+			var a=$(".punto").css("opacity","0.5");
+		}
+
+		function cambiarColorPuntos(){
+			var a=$(".punto").css("background","orange");
+		}
+
+		function activarSelect(){
+			$(".operadores").on('change',function(){
+				if(operador!==""){
+					if($(this).val()===operador){
+						console.log("bien");
+						$(punto).attr("class","puntob");
+						$(punto).css("background","green");
+						$(punto).unbind( "click" );
+						setTimeout(function(){
+							$(".operadores").val("");
+						},1000);
+						aciertos++;
+						evaluar();
+					}else{
+						console.log("mal");
+						$(punto).css("background","red");
+					}
+				}
+			});
+		}
+
+		function activarInput(){
+			$("#clave").on('input',function(){
+				if(plan[indice].clave===$(this).val()){
+					avanzar();
+				}
+			});
+		}
+
+		function activarBoton(){
+			$("#btn_inicio").click(function(){
+				$("#portada").css("display","none");
+				$("#zonavideo").css("display","block");
+			});
+		}
+
+		function activarSiguiente(){
+			$(".btns").click(function(){
+				$("#zonavideo").css("display","none");
+				$("#zonapuntos").css("display","block");
+			});
+
+			$(".btns2").click(function(){
+				$("#zonapuntos").css("display","none");
+				$("#zonavideo").css("display","block");
+			});
+		}
+
+		function evaluar(){
+			var p=plan[indice].puntos;
+			if(aciertos===p.length){
+				if(clave){
+					setTimeout(function(){
+						$("#gclave").css("display","block");
+					},3000);
+				}else{
+					setTimeout(function(){
+						avanzar();
+					},3000);
+				}
+			}
+		}
+
+		function avanzar(){
+			indice++;
+			if(plan[indice]){
+				operador="";
+				punto="";
+				aciertos=0;
+				$(".operadores").val("");
+				$("#gclave").css("display","none");
+				$(".pregunta").css("display","none");
+				$("#clave").val("");
+				$("#zonapuntos").css("display","none");
+				$("#zonavideo").css("display","block");
+				removerPuntos();
+				mostrarEjercicio();
+			}else{
+				console.log("termino");
+				$("#zonapuntos").css("display","none");
+				$("#final").css("display","block");
+			}
+		}
+
+		function removerPuntos(){
+			$(".puntob").remove();
+		}
+
 	</script>
 </body>
 </html>
-
